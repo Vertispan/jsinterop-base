@@ -21,7 +21,7 @@ setup_j2cl_workspace()
 
 jvm_maven_import_external(
     name = "org_gwtproject_gwt_dev",
-    artifact = "com.google.gwt:gwt-dev:2.8.1",
+    artifact = "com.google.gwt:gwt-dev:2.9.0",
     server_urls = ["https://repo1.maven.org/maven2/"],
     licenses = ["notice"],
 )
