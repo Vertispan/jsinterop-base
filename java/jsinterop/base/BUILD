@@ -14,7 +14,7 @@ package(
 java_library(
     name = "base",
     srcs = glob(["**/*.java"]),
-    resources = ["Base.gwt.xml"] + glob(["*.js"]),
+    resources = ["Base.gwt.xml"] + glob(["*.js", "super/*.java"]),
     deps = [
         "//third_party:gwt-javaemul-internal-annotations",
         "//third_party:gwt-jsinterop-annotations",
