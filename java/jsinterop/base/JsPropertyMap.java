@@ -78,6 +78,7 @@ public interface JsPropertyMap<T> {
     return InternalJsUtil.getObjectByName(qualifiedName, this);
   }
 
+  @Deprecated
   @JsOverlay
   default Any getAny(String propertyName) {
     return getAsAny(propertyName);

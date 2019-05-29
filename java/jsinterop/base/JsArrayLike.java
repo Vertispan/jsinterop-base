@@ -47,6 +47,7 @@ public interface JsArrayLike<T> {
     return (T) InternalJsUtil.getAt(this, index);
   }
 
+  @Deprecated
   @JsOverlay
   default Any getAnyAt(int index) {
     return getAtAsAny(index);
