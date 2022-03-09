@@ -14,9 +14,50 @@
   <packaging>pom</packaging>
 
   <name>JsInterop Base</name>
-  <description>Base classes and utilities that provide access to JavaScript language constructs
-    that are not available in pure Java.</description>
+  <description>
+    Base classes and utilities that provide access to JavaScript language constructs
+    that are not available in pure Java.
+    This distribution is slightly modified from the original in order to be compatible
+    with J2CL and, where possible, GWT2 (though this is not heavily tested). The links
+    and references in this pom.xml will reference the Vertispan fork, to ensure that
+    any error introduced by our changes are not incorrectly blamed on the upstream
+    Google repository.
+  </description>
   <url>https://www.gwtproject.org</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/vertispan/jsinterop-base.git</connection>
+    <developerConnection>scm:git:git@github.com:vertispan/jsinterop-base.git</developerConnection>
+    <url>https://github.com/vertispan/jsinterop-base</url>
+  </scm>
+
+  <issueManagement>
+    <url>https://github.com/vertispan/jsinterop-base/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
+  <developers>
+    <developer>
+      <name>J2CL team</name>
+      <organization>Google</organization>
+      <organizationUrl>http://www.google.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Colin Alworth</name>
+      <email>colin@vertispan.com</email>
+      <organization>Vertispan LLC</organization>
+      <organizationUrl>https://www.vertispan.com/</organizationUrl>
+    </developer>
+  </developers>
+
   <dependencies>
     <dependency>
       <groupId>com.google.jsinterop</groupId>
@@ -26,8 +67,8 @@
     <dependency>
       <groupId>com.vertispan.j2cl</groupId>
       <artifactId>gwt-internal-annotations</artifactId>
-      <version>0.4-SNAPSHOT</version>
-    </dependency>  
+      <version>0.10.0-3c97afeac</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -48,13 +89,16 @@
                   <file>jsinterop-base.jar</file>
                   <type>jar</type>
                 </artifact>
-<!--
                 <artifact>
-                  <file>jsinterop-base-src.jar</file>
+                  <file>../bazel-bin/java/jsinterop/base/libbase-src.jar</file>
                   <type>jar</type>
                   <classifier>sources</classifier>
                 </artifact>
--->
+                <artifact>
+                  <file>../bazel-bin/java/jsinterop/base/base-javadoc.jar</file>
+                  <type>jar</type>
+                  <classifier>javadoc</classifier>
+                </artifact>
               </artifacts>
             </configuration>
           </execution>
@@ -63,4 +107,40 @@
     </plugins>
   </build>
 
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <name>Sonatype staging repository for Maven Central</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>vertispan-snapshots</id>
+      <name>Vertispan hosted artifacts-snapshots</name>
+      <url>https://repo.vertispan.com/j2cl</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

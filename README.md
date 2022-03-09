@@ -4,6 +4,31 @@ jsInterop-base contains a set of utilities that cannot be expressed with
 Jsinterop itself and allows GWT and J2CL projects to write certain JavaScript
 expressions with pure Java.
 
+---
+
+This is Vertispan LLC's fork of jsinterop-base, aimed at making this library
+usable by J2CL in Maven, instead of only working in Bazel or in GWT2. The
+changes here are not necessarily expected to work in GWT2, but this is
+something we might be able to iterate on.
+
+To follow Google's own versioning, each release of this repository will
+be patterned as `<upstream release>-<release count>`, where `<upstream release>`
+is the original tag that Google released, followed by `<release count>`, an
+integer to increment for each tagged release - when a new jsinterop-base
+release is made, the release count will reset to `1`. Later releases off of
+the same upstream tag will then increment that count, should they be needed.
+
+The release process is to rebase this set of commmits, then update the
+version in the pom.xml appropriately. When a release is pushed to Maven Central,
+a tag will be pushed to our git repository matching the version we released.
+Snapshot releases will use a `-SNAPSHOT` suffix after the release count.
+
+This repository also restores some old methods that were removed upstream,
+but leaves them `@Deprecated` to ensure that downstream projects don't need
+to rely on all libraries updating instantly to new releases.
+
+---
+
 Bazel dependency
 ----------------
 If your project use [Bazel](https://bazel.build), add this repository as an

@@ -9,6 +9,7 @@ bazel_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pushd "${bazel_root}"
 ${BAZEL} build //java/jsinterop/base:libbase.jar
 ${BAZEL} build //java/jsinterop/base:libbase-src.jar
+${BAZEL} build //java/jsinterop/base:base-javadoc
 
 popd
 
