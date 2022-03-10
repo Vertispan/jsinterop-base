@@ -27,6 +27,11 @@ This repository also restores some old methods that were removed upstream,
 but leaves them `@Deprecated` to ensure that downstream projects don't need
 to rely on all libraries updating instantly to new releases.
 
+The 1.0.0-1 release is not based off of the Google 1.0.0 tag directly, but
+includes some extra commits cherry-picked from the main branch, as the tag
+itself cannot be built cleanly. No changes to the sources of the project are
+included, only the changed documented above.
+
 ---
 
 Bazel dependency
